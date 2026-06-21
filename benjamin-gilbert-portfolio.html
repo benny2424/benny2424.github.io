@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Gilbert — Social Media Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #FAFAF8;
+            --text: #111111;
+            --text-muted: #666666;
+            --accent: #000000;
+            --tag-bg: #F2F2F2;
+            --tag-text: #444444;
+            --phone-frame: #1C1C1E;
+            --border: #E8E8E8;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+            padding: 0 5%;
+        }
+        nav.scrolled { border-bottom-color: var(--border); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* ── SHARED ── */
+        section { padding: 100px 5%; }
+        section:nth-child(even) { background: var(--bg-alt); }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 3rem;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: #333; }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        .btn-secondary:hover { border-color: #999; }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--bg-alt);
+            padding-top: 80px;
+        }
+        .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+        .hero-eyebrow {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+        }
+        .hero-name {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 1.75rem;
+        }
+        .hero-tagline {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .about-bio {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: #333;
+        }
+        .stats-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .stat-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.25rem;
+            background: var(--tag-bg);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--tag-text);
+            width: fit-content;
+        }
+        .stat-chip::before { content: '→'; font-size: 0.7rem; }
+
+        /* ── SKILLS ── */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-tag {
+            padding: 0.5rem 1.1rem;
+            background: var(--tag-bg);
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--tag-text);
+        }
+
+        /* ── PORTFOLIO ── */
+        .portfolio-sub { margin-bottom: 5rem; }
+        .portfolio-sub:last-child { margin-bottom: 0; }
+        .portfolio-sub-header { margin-bottom: 1.5rem; }
+        .portfolio-sub-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.4rem;
+        }
+        .brand-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            background: #EDEDED;
+            color: #666;
+        }
+        .portfolio-sub-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* ── PHONE FRAMES ── */
+        .phone-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .phone-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .phone-frame {
+            width: 200px;
+            height: 430px;
+            background: var(--phone-frame);
+            border-radius: 38px;
+            padding: 9px;
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.22),
+                0 10px 25px rgba(0,0,0,0.12),
+                inset 0 0 0 1px rgba(255,255,255,0.08);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 55px;
+            height: 5px;
+            background: #000;
+            border-radius: 3px;
+            z-index: 2;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 31px;
+            overflow: hidden;
+            background: #000;
+        }
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        .phone-caption { text-align: center; }
+        .phone-caption-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .phone-caption-platform {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* Instagram phone card */
+        .insta-phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 31px;
+            overflow: hidden;
+            background: linear-gradient(160deg, #f09433 0%, #e6683c 20%, #dc2743 45%, #cc2366 70%, #bc1888 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .insta-phone-screen:hover { opacity: 0.88; }
+        .insta-play {
+            width: 52px;
+            height: 52px;
+            background: rgba(255,255,255,0.22);
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+            transition: background 0.2s;
+        }
+        .insta-phone-screen:hover .insta-play { background: rgba(255,255,255,0.35); }
+        .insta-play::after {
+            content: '';
+            border-left: 18px solid white;
+            border-top: 11px solid transparent;
+            border-bottom: 11px solid transparent;
+            margin-left: 5px;
+        }
+        .insta-ig-icon {
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+        }
+        .insta-label {
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            opacity: 0.9;
+        }
+
+        /* LinkedIn card */
+        .linkedin-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.25rem;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: box-shadow 0.2s, border-color 0.2s;
+            margin-top: 1.5rem;
+        }
+        .linkedin-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            border-color: #ccc;
+        }
+        .linkedin-logo {
+            width: 44px;
+            height: 44px;
+            background: #0A66C2;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .linkedin-logo span { color: white; font-weight: 800; font-size: 1.2rem; }
+        .linkedin-text-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.2rem; }
+        .linkedin-text-sub { font-size: 0.78rem; color: var(--text-muted); }
+
+        /* ── LAPTOP FRAMES ── */
+        .websites-grid { display: flex; flex-wrap: wrap; gap: 3rem; }
+        .laptop-card { flex: 0 0 auto; }
+        .laptop-wrap {
+            width: 320px;
+            filter: drop-shadow(0 15px 40px rgba(0,0,0,0.15));
+        }
+        .laptop-frame {
+            background: #d0d0d0;
+            border-radius: 10px 10px 0 0;
+            padding: 22px 8px 6px;
+            position: relative;
+        }
+        .laptop-camera {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: #aaa;
+            border-radius: 50%;
+        }
+        .browser-chrome {
+            background: #ebebeb;
+            border-radius: 5px 5px 0 0;
+            padding: 5px 7px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .browser-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+        .browser-url {
+            flex: 1;
+            background: #fff;
+            border-radius: 3px;
+            padding: 2px 7px;
+            font-size: 0.62rem;
+            color: #888;
+            margin: 0 5px;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .laptop-screen {
+            height: 175px;
+            overflow: hidden;
+            border-radius: 0 0 3px 3px;
+        }
+        .laptop-screen-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem;
+        }
+        .laptop-hinge {
+            background: linear-gradient(180deg, #b8b8b8, #c8c8c8);
+            height: 10px;
+            border-radius: 0 0 4px 4px;
+        }
+        .laptop-base {
+            background: #c8c8c8;
+            height: 8px;
+            border-radius: 0 0 8px 8px;
+            margin-top: 1px;
+        }
+        .laptop-caption {
+            text-align: center;
+            margin-top: 1.25rem;
+        }
+        .laptop-caption-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px; bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute;
+            left: -2.35rem;
+            top: 7px;
+            width: 8px;
+            height: 8px;
+            background: var(--text);
+            border-radius: 50%;
+        }
+        .timeline-company { font-weight: 700; font-size: 1rem; margin-bottom: 0.1rem; }
+        .timeline-role { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.15rem; }
+        .timeline-date { font-size: 0.75rem; color: #aaa; font-weight: 500; margin-bottom: 0.75rem; }
+        .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+        .timeline-bullets li {
+            font-size: 0.875rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+        .timeline-bullets li::before { content: '—'; color: #ccc; flex-shrink: 0; margin-top: 0.05rem; }
+
+        /* ── EDUCATION ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+        .edu-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .edu-degree { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.35rem; }
+        .edu-school { font-size: 0.8rem; color: var(--text-muted); }
+        .edu-year { font-size: 0.72rem; color: #aaa; margin-top: 0.5rem; font-weight: 500; }
+
+        /* ── CONTACT ── */
+        #contact { background: #111; color: #fff; }
+        #contact .section-label { color: #555; }
+        #contact .section-title { color: #fff; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-link {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            transition: color 0.2s;
+        }
+        .contact-link:hover { color: #fff; }
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .contact-form { display: flex; flex-direction: column; gap: 0.85rem; }
+        .form-input {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+        .form-input::placeholder { color: #555; }
+        .form-input:focus { border-color: rgba(255,255,255,0.35); }
+        textarea.form-input { resize: vertical; min-height: 100px; }
+        .btn-white { background: #fff; color: #000; }
+        .btn-white:hover { background: #e8e8e8; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0a0a0a;
+            color: #444;
+            text-align: center;
+            padding: 2rem 5%;
+            font-size: 0.78rem;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            section { padding: 70px 5%; }
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .nav-links { display: none; }
+            .hero-name { font-size: 3rem; }
+            .phone-grid { justify-content: center; }
+            .websites-grid { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">Benjamin Gilbert</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-inner">
+        <p class="hero-eyebrow">Social Media Specialist &amp; Digital Marketing Manager</p>
+        <h1 class="hero-name">Benjamin<br>Gilbert</h1>
+        <p class="hero-tagline">"From global brands to world championships — creating content that moves people."</p>
+        <div class="hero-btns">
+            <a href="#portfolio" class="btn btn-primary">View My Work</a>
+            <a href="#" class="btn btn-secondary">Download CV</a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-inner">
+        <p class="section-label">About</p>
+        <div class="about-grid">
+            <div>
+                <h2 class="section-title">Digital storyteller.<br>Sports fanatic.</h2>
+                <p class="about-bio">I'm a digital marketing manager and social media specialist with 15+ years of experience across sport, luxury hospitality, and global FMCG brands. Currently at the UCI (Union Cycliste Internationale), where I create and manage content across Instagram, YouTube, Facebook and X — and travel the world to produce live content at World Cups and World Championships. I'm equally at home behind a camera on a mountain trail or building a paid media strategy from scratch.</p>
+            </div>
+            <div class="stats-grid">
+                <span class="stat-chip">15+ Years Experience</span>
+                <span class="stat-chip">Global Brands</span>
+                <span class="stat-chip">9+ Platforms</span>
+                <span class="stat-chip">Live Event Coverage Worldwide</span>
+                <span class="stat-chip">English Native · French B1</span>
+                <span class="stat-chip">Chinese Social Media Specialist</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="section-inner">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title">What I bring to the table</h2>
+        <div class="skills-grid">
+            <span class="skill-tag">Brand Development</span>
+            <span class="skill-tag">Social Media Strategy</span>
+            <span class="skill-tag">Content Production</span>
+            <span class="skill-tag">Digital Media Strategy</span>
+            <span class="skill-tag">Campaign Building</span>
+            <span class="skill-tag">Google Analytics &amp; Adwords</span>
+            <span class="skill-tag">Paid Media — Meta / Google</span>
+            <span class="skill-tag">Influencer Marketing</span>
+            <span class="skill-tag">Photography &amp; Video</span>
+            <span class="skill-tag">Copywriting</span>
+            <span class="skill-tag">Website Building</span>
+            <span class="skill-tag">SEO</span>
+            <span class="skill-tag">AI Tools</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Instagram</span>
+            <span class="skill-tag">YouTube</span>
+            <span class="skill-tag">TikTok</span>
+            <span class="skill-tag">X / Twitter</span>
+            <span class="skill-tag">Facebook</span>
+            <span class="skill-tag">LinkedIn</span>
+            <span class="skill-tag">Rednote</span>
+            <span class="skill-tag">Weibo</span>
+            <span class="skill-tag">WeChat</span>
+            <span class="skill-tag">Douyin</span>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+    <div class="section-inner">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Selected Work</h2>
+
+        <!-- UCI YouTube -->
+        <div class="portfolio-sub">
+            <div class="portfolio-sub-header">
+                <p class="portfolio-sub-title">
+                    UCI — Union Cycliste Internationale
+                    <span class="brand-badge">YouTube</span>
+                </p>
+                <p class="portfolio-sub-desc">Content created for UCI's global channels — campaigns, live events, and world championships.</p>
+            </div>
+            <div class="phone-grid">
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <iframe
+                                src="https://www.youtube.com/embed/xI3IMfNUnzQ?autoplay=1&mute=1&loop=1&playlist=xI3IMfNUnzQ&controls=0&rel=0&modestbranding=1"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-title">World Bicycle Day</div>
+                        <div class="phone-caption-platform">YouTube · UCI</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <iframe
+                                src="https://www.youtube.com/embed/VzvC3z5J-8s?autoplay=1&mute=1&loop=1&playlist=VzvC3z5J-8s&controls=0&rel=0&modestbranding=1"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-title">Track World Cup</div>
+                        <div class="phone-caption-platform">YouTube · UCI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bürgenstock YouTube -->
+        <div class="portfolio-sub">
+            <div class="portfolio-sub-header">
+                <p class="portfolio-sub-title">
+                    Bürgenstock Hotels &amp; Resorts
+                    <span class="brand-badge">YouTube</span>
+                </p>
+                <p class="portfolio-sub-desc">Digital content leading the brand's social media presence across Switzerland.</p>
+            </div>
+            <div class="phone-grid">
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <iframe
+                                src="https://www.youtube.com/embed/wQ1lJNGoBrA?autoplay=1&mute=1&loop=1&playlist=wQ1lJNGoBrA&controls=0&rel=0&modestbranding=1"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-title">Brand Campaign</div>
+                        <div class="phone-caption-platform">YouTube · Bürgenstock</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Royal Savoy YouTube -->
+        <div class="portfolio-sub">
+            <div class="portfolio-sub-header">
+                <p class="portfolio-sub-title">
+                    Royal Savoy Lausanne
+                    <span class="brand-badge">YouTube</span>
+                </p>
+                <p class="portfolio-sub-desc">Luxury hospitality content for one of Lausanne's iconic hotels.</p>
+            </div>
+            <div class="phone-grid">
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <iframe
+                                src="https://www.youtube.com/embed/tLFS0dfkdH8?autoplay=1&mute=1&loop=1&playlist=tLFS0dfkdH8&controls=0&rel=0&modestbranding=1"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-title">Hotel Campaign</div>
+                        <div class="phone-caption-platform">YouTube · Royal Savoy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Mix -->
+        <div class="portfolio-sub">
+            <div class="portfolio-sub-header">
+                <p class="portfolio-sub-title">
+                    Social Media
+                    <span class="brand-badge">Instagram</span>
+                    <span class="brand-badge">LinkedIn</span>
+                </p>
+                <p class="portfolio-sub-desc">A mix of content created across brands — sport, luxury, lifestyle and sustainability.</p>
+            </div>
+            <div class="phone-grid">
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/CewOShcFo7q/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/CnuFZvnsVhL/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/DPgy1-9DaWf/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/DX9mcRcgVIi/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/DXnxcmhCr1J/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+                <div class="phone-card">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <a class="insta-phone-screen" href="https://www.instagram.com/reel/DXibOGCCgXh/" target="_blank" rel="noopener">
+                            <span class="insta-ig-icon">Instagram</span>
+                            <div class="insta-play"></div>
+                            <span class="insta-label">View Reel</span>
+                        </a>
+                    </div>
+                    <div class="phone-caption">
+                        <div class="phone-caption-platform">Instagram Reel</div>
+                    </div>
+                </div>
+            </div>
+            <!-- LinkedIn -->
+            <a class="linkedin-card" href="https://www.linkedin.com/feed/update/urn:li:activity:7473012818104184833" target="_blank" rel="noopener">
+                <div class="linkedin-logo"><span>in</span></div>
+                <div>
+                    <div class="linkedin-text-title">Featured LinkedIn Post</div>
+                    <div class="linkedin-text-sub">View on LinkedIn →</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Websites -->
+        <div class="portfolio-sub">
+            <div class="portfolio-sub-header">
+                <p class="portfolio-sub-title">
+                    Web Projects
+                    <span class="brand-badge">Websites</span>
+                </p>
+                <p class="portfolio-sub-desc">Luxury hotel brand websites managed and activated as part of digital leadership roles.</p>
+            </div>
+            <div class="websites-grid">
+                <!-- Bürgenstock -->
+                <div class="laptop-card">
+                    <div class="laptop-wrap">
+                        <div class="laptop-frame">
+                            <div class="laptop-camera"></div>
+                            <div class="browser-chrome">
+                                <div class="browser-dot" style="background:#ff5f57;"></div>
+                                <div class="browser-dot" style="background:#ffbd2e;"></div>
+                                <div class="browser-dot" style="background:#28c840;"></div>
+                                <div class="browser-url">buergenstock.ch</div>
+                            </div>
+                            <div class="laptop-screen">
+                                <div class="laptop-screen-content" style="background: linear-gradient(145deg, #2c3e50 0%, #3d5a40 100%);">
+                                    Bürgenstock<br>Hotels &amp; Resorts
+                                </div>
+                            </div>
+                        </div>
+                        <div class="laptop-hinge"></div>
+                        <div class="laptop-base"></div>
+                    </div>
+                    <div class="laptop-caption">
+                        <div class="laptop-caption-name">Bürgenstock Hotels &amp; Resorts</div>
+                        <a href="https://www.buergenstock.ch" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.75rem; padding:0.5rem 1.25rem;">Visit Website</a>
+                    </div>
+                </div>
+                <!-- Royal Savoy -->
+                <div class="laptop-card">
+                    <div class="laptop-wrap">
+                        <div class="laptop-frame">
+                            <div class="laptop-camera"></div>
+                            <div class="browser-chrome">
+                                <div class="browser-dot" style="background:#ff5f57;"></div>
+                                <div class="browser-dot" style="background:#ffbd2e;"></div>
+                                <div class="browser-dot" style="background:#28c840;"></div>
+                                <div class="browser-url">royalsavoy.ch</div>
+                            </div>
+                            <div class="laptop-screen">
+                                <div class="laptop-screen-content" style="background: linear-gradient(145deg, #1a1a2e 0%, #b8963e 100%);">
+                                    Royal Savoy<br>Lausanne
+                                </div>
+                            </div>
+                        </div>
+                        <div class="laptop-hinge"></div>
+                        <div class="laptop-base"></div>
+                    </div>
+                    <div class="laptop-caption">
+                        <div class="laptop-caption-name">Royal Savoy Lausanne</div>
+                        <a href="https://www.royalsavoy.ch" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.75rem; padding:0.5rem 1.25rem;">Visit Website</a>
+                    </div>
+                </div>
+                <!-- Schweizerhof -->
+                <div class="laptop-card">
+                    <div class="laptop-wrap">
+                        <div class="laptop-frame">
+                            <div class="laptop-camera"></div>
+                            <div class="browser-chrome">
+                                <div class="browser-dot" style="background:#ff5f57;"></div>
+                                <div class="browser-dot" style="background:#ffbd2e;"></div>
+                                <div class="browser-dot" style="background:#28c840;"></div>
+                                <div class="browser-url">schweizerhof-bern.ch</div>
+                            </div>
+                            <div class="laptop-screen">
+                                <div class="laptop-screen-content" style="background: linear-gradient(145deg, #2d2d2d 0%, #8b7355 100%);">
+                                    Schweizerhof<br>Bern
+                                </div>
+                            </div>
+                        </div>
+                        <div class="laptop-hinge"></div>
+                        <div class="laptop-base"></div>
+                    </div>
+                    <div class="laptop-caption">
+                        <div class="laptop-caption-name">Schweizerhof Bern</div>
+                        <a href="https://www.schweizerhof-bern.ch" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.75rem; padding:0.5rem 1.25rem;">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="section-inner">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">UCI — Union Cycliste Internationale</div>
+                <div class="timeline-role">Social Media Specialist</div>
+                <div class="timeline-date">Dec 2025 – Present · Aigle, VD, Switzerland</div>
+                <ul class="timeline-bullets">
+                    <li>Creating content for UCI main channels: Instagram, YouTube, Facebook, X</li>
+                    <li>Managing the Chinese markets: Rednote, Weibo, WeChat, Douyin</li>
+                    <li>Content manager for sustainability and bike &amp; mobility</li>
+                    <li>Attending world cups and world championships to produce live content</li>
+                    <li>Coordinating live transmissions with UCI Sport and TV departments</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Elite Trail Runners — HOKA · Red Bull · Compressport · Mammut</div>
+                <div class="timeline-role">Content Creator</div>
+                <div class="timeline-date">June 2024 – Ongoing</div>
+                <ul class="timeline-bullets">
+                    <li>Social Media Manager for athletes: Judith Wyder, Theres &amp; François Leboeuf, Tom Joly, Luke Grenfell-Shaw</li>
+                    <li>Live content creation and in-race photography &amp; video</li>
+                    <li>Brand advice, partnership building and influencer marketing</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Bürgenstock Hotels &amp; Resorts</div>
+                <div class="timeline-role">Regional Digital Marketing Manager, Switzerland</div>
+                <div class="timeline-date">Dec 2020 – Nov 2024 · Zug / Luzern / Lausanne</div>
+                <ul class="timeline-bullets">
+                    <li>Led digital operations and social media for the group</li>
+                    <li>Drove brand campaigns and strategy, managing hotel teams in digital activations</li>
+                    <li>Oversaw website content and analytics reporting via Google Analytics</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Chiquita</div>
+                <div class="timeline-role">Global Digital Media / Brand Activation Manager</div>
+                <div class="timeline-date">Oct 2019 – June 2020 · Lausanne</div>
+                <ul class="timeline-bullets">
+                    <li>Led global digital media amplification and listening reports</li>
+                    <li>Website content management and agency coordination</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">The Chenot Group</div>
+                <div class="timeline-role">Global Digital Marketing Manager</div>
+                <div class="timeline-date">Oct 2018 – Oct 2019 · Luzern</div>
+                <ul class="timeline-bullets">
+                    <li>Ran all corporate social media and SEA strategy</li>
+                    <li>Worldwide copywriting, content calendar, collaboration with medical and cosmetic departments</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Pub Mont Fort</div>
+                <div class="timeline-role">Social Media Manager</div>
+                <div class="timeline-date">Nov 2015 – Nov 2017 · Verbier, Switzerland</div>
+                <ul class="timeline-bullets">
+                    <li>Content creation, paid media on social and Google, photography</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Verbier Seasonaires</div>
+                <div class="timeline-role">Owner / Founder</div>
+                <div class="timeline-date">2013 – 2017 · Verbier, Switzerland</div>
+                <ul class="timeline-bullets">
+                    <li>Founded and grew a brand community — events, integrated social strategy, WordPress website design</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-company">Hotel Farinet</div>
+                <div class="timeline-role">Nightclub Manager / VIP Guest Manager</div>
+                <div class="timeline-date">2010 – 2013 · Verbier, Switzerland</div>
+                <ul class="timeline-bullets">
+                    <li>Daily management of Verbier's leading nightclub, up to 20 staff</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <div class="section-inner">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Qualifications</h2>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <div class="edu-degree">Sports Media &amp; Communication Diploma</div>
+                <div class="edu-school">Sports Management WW, USA</div>
+                <div class="edu-year">2020</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-degree">Advanced Social Media Marketing Diploma</div>
+                <div class="edu-school">Shaw Academy, Online</div>
+                <div class="edu-year">2018</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-degree">Associates Degree — Social Media Business Marketing</div>
+                <div class="edu-school">IDM, Online</div>
+                <div class="edu-year">2014 – 2015</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-degree">FA Coaching Badge Level 1</div>
+                <div class="edu-school">Football Association</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-inner">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's work together</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <a href="mailto:benjamingilbert88@gmail.com" class="contact-link">
+                    <div class="contact-icon">✉</div>
+                    benjamingilbert88@gmail.com
+                </a>
+                <a href="tel:+41774571035" class="contact-link">
+                    <div class="contact-icon">✆</div>
+                    +41 77 457 10 35
+                </a>
+                <a href="https://www.linkedin.com/in/benjamin-gilbert-635bb1146/" target="_blank" rel="noopener" class="contact-link">
+                    <div class="contact-icon" style="font-weight:700; font-size:0.8rem;">in</div>
+                    LinkedIn
+                </a>
+                <a href="https://www.instagram.com/bennygram_/" target="_blank" rel="noopener" class="contact-link">
+                    <div class="contact-icon" style="font-size:0.7rem;">▣</div>
+                    @bennygram_
+                </a>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your name" class="form-input" required>
+                <input type="email" placeholder="Your email" class="form-input" required>
+                <textarea placeholder="Your message" class="form-input"></textarea>
+                <button type="submit" class="btn btn-white">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Benjamin Gilbert · Social Media Specialist</p>
+</footer>
+
+<script>
+    // Nav shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Simple contact form — opens mailto
+    function handleSubmit(e) {
+        e.preventDefault();
+        const name = e.target[0].value;
+        const email = e.target[1].value;
+        const msg = e.target[2].value;
+        window.location.href = `mailto:benjamingilbert88@gmail.com?subject=Portfolio enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0AFrom: ${encodeURIComponent(email)}`;
+    }
+</script>
+
+</body>
+</html>
